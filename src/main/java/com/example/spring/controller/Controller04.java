@@ -34,4 +34,12 @@ public class Controller04 {
         System.out.println("name = " + name);
         System.out.println("married = " + married);
     }
+
+    // /main4/sub4?check=true&email=abc@naver.com&age=55
+    @RequestMapping("sub4")
+    public void method4(Boolean check, String email, Integer age) {
+        System.out.println("check = " + check);
+        System.out.println("email = " + email);
+        System.out.println("age = " + age);
+    }
 }
