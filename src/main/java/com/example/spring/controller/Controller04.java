@@ -25,4 +25,13 @@ public class Controller04 {
         System.out.println("email = " + email);
         System.out.println("age = " + age);
     }
+
+    // /main4/sub3?name=son&married=true
+    // spring에서는 @RequestParam을 생략가능. (이 경우 required = false 이다)
+    // 생략이 너무 많아서 초보자가 한눈에 보고 이해하기 어려울 수 있음.
+    @RequestMapping("sub3")
+    public void method3(String name, Boolean married) {
+        System.out.println("name = " + name);
+        System.out.println("married = " + married);
+    }
 }
