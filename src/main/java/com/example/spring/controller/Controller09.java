@@ -1,11 +1,13 @@
 package com.example.spring.controller;
 
+import com.example.spring.domain.MyDto7;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 
 @Controller
@@ -60,5 +62,26 @@ public class Controller09 {
                 "your-name", "창석"
         );
         model.addAttribute("attr3", map3);
+    }
+
+    @RequestMapping("sub5")
+    public void method5(Model model) {
+        var map1 = Map.of("phone1", "iphone", "phone2", "galaxy");
+        var map2 = Map.of("korea", "seoul", "us", "ny");
+        var map3 = Map.of("1st", "hamburger", "2nd", "pizza");
+
+        model.addAttribute("korea", "us");
+        model.addAttribute("phones", map1);
+        model.addAttribute("caps", map2);
+        model.addAttribute("food", map3);
+
+    }
+
+    @RequestMapping("sub6")
+    public void method6(Model model) {
+        model.addAttribute("attr1", new Object());
+        model.addAttribute("attr2", new Scanner(System.in));
+        model.addAttribute("attr3", new MyDto7());
+
     }
 }
