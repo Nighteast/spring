@@ -23,6 +23,17 @@
     <c:forEach begin="1" end="3">
         <li>Lorem ipsum.</li>
     </c:forEach>
-
+    <hr>
+    <c:forEach begin="0" end="2" var="num">
+        <li>num : ${num}</li>
+    </c:forEach>
+    <hr>
+    <c:forEach begin="0" end="2" var="num">
+        <li>car : ${myList[num]}</li>
+    </c:forEach>
+    <hr>
+    <c:forEach items="${myList}" var="item">
+        <li>car : ${item}</li>
+    </c:forEach>
 </body>
 </html>
