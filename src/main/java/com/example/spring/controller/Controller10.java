@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -58,7 +59,19 @@ public class Controller10 {
 
     @RequestMapping("sub5")
     public void method5(Model model) {
-        model.addAttribute("foodList", List.of("chocolate", "candy", "takoyaki", "salad"));
+        model.addAttribute("foodList", List.of("pizza", "milk", "water", "salad"));
         model.addAttribute("names", List.of("두식", "봉석", "희수", "미현"));
+    }
+
+    @RequestMapping("sub6")
+    public void method6(Model model) {
+        List<MyDto9> list = new ArrayList<>();
+        list.add(new MyDto9(31L, "son", "hm", "football", "010"));
+        list.add(new MyDto9(32L, "lee", "aa", "paris", "011"));
+        list.add(new MyDto9(33L, "kim", "nn", "tokyo", "082"));
+        list.add(new MyDto9(34L, "jung", "ss", "seoul", "032"));
+        list.add(new MyDto9(35L, "yong", "hh", "busan", "014"));
+
+        model.addAttribute("moving", list);
     }
 }

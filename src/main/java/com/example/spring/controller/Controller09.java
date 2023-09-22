@@ -100,7 +100,7 @@ public class Controller09 {
     @RequestMapping("sub8")
     public void method8(Model model) {
         MyDto9 o1 = new MyDto9();
-        o1.setId("super");
+        o1.setId(31L);
         o1.setFirstName("Yujiro");
         o1.setLastName("Hanma");
         o1.setClassName("BaseDoom");

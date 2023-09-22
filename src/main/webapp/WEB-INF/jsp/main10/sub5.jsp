@@ -51,5 +51,35 @@
     </div>
 </c:forEach>
 
+<hr>
+
+<c:forEach items="${names}" var="name" varStatus="status">
+    <div class="box">
+        <div>name : ${name}</div>
+        <div>
+            <div>count : ${status.count}</div>
+            <div>index : ${status.index}</div>
+            <div>current : ${status.current}</div>
+            <div>first : ${status.first}</div>
+            <div>last : ${status.last}</div>
+        </div>
+    </div>
+</c:forEach>
+
+<hr>
+<%--
+<ul>
+	<li> 1 : pizza </li>
+	<li> 2 : milk </li>
+	<li> 3 : water </li>
+	<li> 4 : salad </li>
+</ul>
+--%>
+<ul>
+    <c:forEach items="${foodList}" var="food" varStatus="status">
+        <li>${status.count} : ${food}</li>
+    </c:forEach>
+</ul>
+
 </body>
 </html>
