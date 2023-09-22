@@ -18,7 +18,7 @@
     <%--
     begin과 end 포함해서 반복
     end 는 begin보다 커야함
-    begin은 0보다 커야함
+    begin은 0보다 크거나 같아야함
      --%>
     <c:forEach begin="1" end="3">
         <li>Lorem ipsum.</li>
