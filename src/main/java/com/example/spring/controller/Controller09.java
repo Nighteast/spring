@@ -1,6 +1,8 @@
 package com.example.spring.controller;
 
 import com.example.spring.domain.MyDto7;
+import com.example.spring.domain.MyDto8;
+import com.example.spring.domain.MyDto9;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -83,5 +85,27 @@ public class Controller09 {
         model.addAttribute("attr2", new Scanner(System.in));
         model.addAttribute("attr3", new MyDto7());
 
+    }
+
+    @RequestMapping("sub7")
+    public void method7(Model model) {
+        MyDto8 o1 = new MyDto8();
+        o1.setFood("pizza");
+        o1.setComputer("intel");
+        o1.setBirthDate("2020-01-01");
+
+        model.addAttribute("person1", o1);
+    }
+
+    @RequestMapping("sub8")
+    public void method8(Model model) {
+        MyDto9 o1 = new MyDto9();
+        o1.setId("super");
+        o1.setFirstName("Yujiro");
+        o1.setLastName("Hanma");
+        o1.setClassName("BaseDoom");
+        o1.setPhoneNumber("010-9999-4444");
+
+        model.addAttribute("student", o1);
     }
 }
