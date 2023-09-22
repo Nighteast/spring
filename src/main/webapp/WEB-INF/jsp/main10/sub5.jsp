@@ -28,7 +28,7 @@
         padding: 10px;
         display: flex;
         /*justify-content: space-around;*/
-
+        gap: 10px;
     }
     .box > div {
         border: 2px solid orange;
