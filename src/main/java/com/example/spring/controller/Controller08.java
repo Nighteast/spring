@@ -4,6 +4,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+import java.util.Map;
+
 @Controller
 @RequestMapping("main8")
 public class Controller08 {
@@ -19,5 +22,15 @@ public class Controller08 {
     public void method2(Model model) {
         model.addAttribute("propone", "🫠");
         model.addAttribute("propTWO", "🎶");
+    }
+
+    @RequestMapping("sub3")
+    public void method3(Model model) {
+        // view name : /main8/sub3
+        // /WEB-INF/jsp/main8/sub3.jsp
+        model.addAttribute("myName", "한마유지로");
+        model.addAttribute("yourAddress", List.of(4, 5));
+        model.addAttribute("herEmail", Map.of("a","b"));
+
     }
 }
