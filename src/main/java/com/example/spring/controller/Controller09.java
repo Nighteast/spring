@@ -39,7 +39,26 @@ public class Controller09 {
     public void method3(Model model) {
         model.addAttribute("names", List.of("영남", "원석", "동규"));
         model.addAttribute("list1", List.of("무빙", "엘리멘탈"));
-        model.addAttribute("mapList1", List.of("1", "a", "2", "b", "3", "c"));
+        var list2 = List.of("1", "a", "2", "b", "3", "c");
+        model.addAttribute("mapList1", list2);
         model.addAttribute("cities", new String[]{"천국", "지옥", "연옥", "단테"});
+    }
+
+    @RequestMapping("sub4")
+    public void method4(Model model) {
+        var map1 = Map.of("son", 7, "lee", 19, "kim", 30);
+        model.addAttribute("myMap", map1);
+        model.addAttribute("myMap", map1);
+        var cityMap = Map.of("seoul", "서울", "busan", "부산");
+        var color = Map.of("red", "빨강", "blue", "파랑", "black", "검정");
+        model.addAttribute("cityMap", cityMap);
+        model.addAttribute("color", color);
+
+        var map3 = Map.of(
+                "name", "두식",
+                "my name", "봉식",
+                "your-name", "창석"
+        );
+        model.addAttribute("attr3", map3);
     }
 }
