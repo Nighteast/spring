@@ -12,6 +12,17 @@
     <title>Title</title>
 </head>
 <body>
+    <h1>forEach</h1>
+    <p>컨텐츠 반복 출력</p>
+    <p>주요 attribute : begin, end, var, items, varStatus</p>
+    <%--
+    begin과 end 포함해서 반복
+    end 는 begin보다 커야함
+    begin은 0보다 커야함
+     --%>
+    <c:forEach begin="1" end="3">
+        <li>Lorem ipsum.</li>
+    </c:forEach>
 
 </body>
 </html>

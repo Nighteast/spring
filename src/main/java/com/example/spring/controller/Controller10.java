@@ -50,4 +50,9 @@ public class Controller10 {
 
         model.addAttribute("person1", o1);
     }
+
+    @RequestMapping("sub4")
+    public void method4(Model model) {
+
+    }
 }
