@@ -88,5 +88,29 @@ public class Controller10 {
     public void method8(Model model) {
         model.addAttribute("a", 3);
         model.addAttribute("b", 5);
+
+        model.addAttribute("c", "java");
+        model.addAttribute("d", "spring");
+
+        model.addAttribute("e", "11");
+        model.addAttribute("f", "2");
+        model.addAttribute("g", 2);
+        // ${e > f} : false 같은 타입끼리의 연산은 그대로
+        // ${e > g} : true 다른 타입끼리의 연산은 수의 형태로 변환하려고 한다.
+    }
+
+    @RequestMapping("sub9")
+    public void method9(Model model) {
+        model.addAttribute("a", "java");
+        model.addAttribute("b", "");
+
+        model.addAttribute("c", List.of(3, 4));
+        model.addAttribute("d", List.of());
+
+        model.addAttribute("e", Map.of("name", "son"));
+        model.addAttribute("f", Map.of());
+
+        model.addAttribute("g", null);
+
     }
 }
