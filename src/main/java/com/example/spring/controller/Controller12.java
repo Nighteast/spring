@@ -10,4 +10,8 @@ public class Controller12 {
     @RequestMapping("sub1")
     public void method1() {
     }
+
+    @RequestMapping("asub2/bsub2/csub2/dsub2/esub2")
+    public void method2() {
+    }
 }
