@@ -15,6 +15,8 @@
 <c:if test="${not empty message}">
     <p>${message}</p>
 </c:if>
+
 <a href="/main12/sub3">새 이름과 나이 등록하러 가기</a>
+
 </body>
 </html>
