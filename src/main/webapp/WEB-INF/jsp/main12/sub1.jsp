@@ -13,5 +13,34 @@
 </head>
 <body>
 
+<h1>form 요소</h1>
+
+<form action="">
+    <input type="text" name="param1">
+    <br>
+    <input type="text" name="param2">
+    <br>
+    <%-- select(option), textarea--%>
+    <button>전송</button>
+</form>
+
+<hr>
+
+<form action="">
+    <%--
+    전송버튼 클릭시
+    ?name=lee&age=44&address=seoul&email=abc.gmail.com
+    --%>
+    <input type="text" name="name">
+    <br>
+    <input type="text" name="age">
+    <br>
+    <input type="text" name="address">
+    <br>
+    <input type="text" name="email">
+    <br>
+    <button>전송</button>
+</form>
+
 </body>
 </html>
