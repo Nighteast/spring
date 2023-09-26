@@ -50,7 +50,9 @@
         </div>
         <button>전송</button>
 </form>
+
 <hr>
+
 <form action="/main13/sub2">
     <div>
         <input type="text" name="param1" value="son">   <%--value : 기본 값--%>
@@ -91,5 +93,34 @@
     </div>
     <button>전송</button>
 </form>
+
+<hr>
+
+<form action="/main13/sub2">
+    <label for="input1">    <%--input의 설명텍스트를 주로 label로 감싼다. 짝으로 쓰임. --%>
+        주소
+    </label>                <%--input_id와 laber_for 을 같게 하면 서로 연동되는 부분이 있음.--%>
+    <input id="input1" type="text">
+    <br>
+    <%--div>div*3>label[for=check$]>lorem1^input:c#check$--%>
+    <div>
+        <div>
+            <label for="check1">Lorem.</label>
+            <input type="checkbox" name="" id="check1">
+        </div>
+        <div>
+            <label for="check2">Eum!</label>
+            <input type="checkbox" name="" id="check2">
+        </div>
+        <div>
+            <label for="check3">Omnis.</label>
+            <input type="checkbox" name="" id="check3">
+        </div>
+    </div>
+    <input type="submit" value="전송">    <%--종료태그가 없음(안에 컨텐츠를 넣기 힘듦 --%>
+    <button>전송</button>                 <%--종료태그가 있음(안에 컨텐츠를 넣을 수 있음) --%>
+</form>
+
+
 </body>
 </html>
