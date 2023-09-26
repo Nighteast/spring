@@ -31,4 +31,15 @@ public class Controller12 {
 
         model.addAttribute("message", name + "과 " + age + "를 저장함");
     }
+
+    @RequestMapping("sub5")
+    public void method5() {
+    }
+
+    @RequestMapping("sub6")
+    public void method6(@RequestParam("q") String query, Model model) {
+        System.out.println("Controller12.method6");
+
+        model.addAttribute("message", query + " 검색 결과입니다.");
+    }
 }
