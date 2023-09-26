@@ -18,10 +18,12 @@
 <form action="/main14/sub6" method="post">
     <div>
         <label for="input1">아이디 입력</label>
+        <br>
         <input type="text" id="input1" name="username">
     </div>
     <div>
         <label for="input2">패스워드 입력</label>
+        <br>
         <input type="password" id="input2" name="password">
     </div>
     <input type="submit">
