@@ -91,8 +91,11 @@ public class Controller13 {
     }
 
     @RequestMapping("sub14")
-    public void method14(String hobby, List<String> food) {
+    public void method14(
+            @RequestParam("hobby") String hobby,
+            @RequestParam("food") List<String> food
+    ) {
         System.out.println("hobby = " + hobby);
-        food.forEach(System.out::println);
+        System.out.println("food = " + food);
     }
 }
