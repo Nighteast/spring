@@ -13,5 +13,49 @@
 </head>
 <body>
 
+<form action="/main13/sub3">
+    <%--div*10>label[for=input$]>lorem1^input[type][name=param$][id=input$]--%>
+    <div>
+        <label for="input1">Lorem.</label>
+        <input type="text" name="param1" id="input1">
+    </div>
+    <div>
+        <label for="input2">Quis!</label>
+        <input type="number" name="param2" id="input2">
+    </div>
+    <div>
+        <label for="input3">Temporibus!</label>
+        <input type="password" name="param3" id="input3">
+    </div>
+    <div>
+        <label for="input4">Neque?</label>
+        <input type="date" name="param4" id="input4">       <%--날짜--%>
+    </div>
+    <div>
+        <label for="input5">Impedit!</label>
+        <input type="datetime-local" name="param5" id="input5">     <%--날짜 시간(분까지)--%>
+    </div>
+    <div>
+        <label for="input6">Doloremque?</label>
+        <input type="radio" name="param6" value="radio value1" id="input6">
+    </div>
+    <div>
+        <label for="input7">Quia!</label>
+        <input type="radio" name="param6" value="radio value2" id="input7">
+    </div>
+    <div>
+        <label for="input8">Quia?</label>
+        <input type="checkbox" name="param8" value="pizza" id="input8">
+    </div>
+    <div>
+        <label for="input9">Optio!</label>
+        <input type="checkbox" name="param8" value="melon" id="input9">
+    </div>
+    <div>
+        <label for="input10">Officia?</label>
+        <input type="checkbox" name="param8" value="coffee" id="input10">
+    </div>
+    <button>전송</button>
+</form>
 </body>
 </html>
