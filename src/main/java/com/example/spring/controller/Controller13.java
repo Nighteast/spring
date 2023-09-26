@@ -2,6 +2,7 @@ package com.example.spring.controller;
 
 import com.example.spring.domain.MyDto11;
 import com.example.spring.domain.MyDto12;
+import com.example.spring.domain.MyDto13;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,7 +15,15 @@ import java.util.List;
 @Controller
 @RequestMapping("main13")
 public class Controller13 {
-    @RequestMapping({"sub1", "sub2", "sub4"})
+    @RequestMapping({
+            "sub1",
+            "sub2",
+            "sub4",
+            "sub7",
+            "sub9",
+            "sub11",
+            "sub13"
+    })
     public void method1() {
     }
 
@@ -62,8 +71,28 @@ public class Controller13 {
         System.out.println("user = " + user);
     }
 
-    @RequestMapping("sub7")
-    public void method7(MyDto12 info) {
+    @RequestMapping("sub8")
+    public void method8(MyDto12 info) {
         System.out.println("info = " + info);
+    }
+
+    @RequestMapping("sub10")
+    public void method10(
+            @RequestParam("title") String title,
+            @RequestParam("contentBody") String contentBody
+    ) {
+        System.out.println("title = " + title);
+        System.out.println("contentBody = " + contentBody);
+    }
+
+    @RequestMapping("sub12")
+    public void method12(MyDto13 vo) {
+        System.out.println("vo = " + vo);
+    }
+
+    @RequestMapping("sub14")
+    public void method14(String hobby, List<String> food) {
+        System.out.println("hobby = " + hobby);
+        food.forEach(System.out::println);
     }
 }
