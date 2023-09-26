@@ -13,5 +13,41 @@
 </head>
 <body>
 
+<h1> 암호 전송 </h1>
+<%--
+get 방식 : 주소에 쿼리스트링으로 붙어서 전송
+1. 브라우저 주소란에서 볼 수 있음
+2. 길이에 제한이 있음. (브라우저 서버마다 차이 있을 수 있음)
+
+post 방식 : 요청 본문에 붙어서 전송
+1. 브라우저 주소란에서 볼 수 없음
+2. 길이에 제한이 없음.
+--%>
+<h1>get방식</h1>
+<form action="/main14/sub2" method="get">
+    <div>
+        id :
+        <input type="text" name="id">
+    </div>
+    <div>password :
+        <input type="password" name="password">
+    </div>
+    <button>전송</button>
+</form>
+
+<hr>
+
+<h1>post방식</h1>
+<form action="/main14/sub2" method="post">
+    <div>
+        id :
+        <input type="text" name="id">
+    </div>
+    <div>password :
+        <input type="password" name="password">
+    </div>
+    <button>전송</button>
+</form>
+
 </body>
 </html>
