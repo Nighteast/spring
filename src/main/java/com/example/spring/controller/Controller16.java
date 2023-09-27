@@ -150,7 +150,8 @@ public class Controller16 {
     @GetMapping("sub16")
     public String method16(RedirectAttributes rttr) {
         rttr.addFlashAttribute("flashAttr", "모델에 붙음");
-        rttr.addAttribute("attr1", "쿼리스트림에 붙음");
+        rttr.addAttribute("attr1", "쿼리스트링에 붙음");
+        rttr.addAttribute("address", "서울 신촌");
 
         return "redirect:/main16/sub17";
     }
