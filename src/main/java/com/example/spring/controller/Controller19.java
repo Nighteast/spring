@@ -354,5 +354,6 @@ public class Controller19 {
         //view로 forward
         return "/main19/sub6";
     }
+
 }
 
