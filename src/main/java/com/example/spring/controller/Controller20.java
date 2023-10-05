@@ -121,7 +121,7 @@ public class Controller20 {
         try (connection; statement; resultSet) {
             while (resultSet.next()) {
                 System.out.println();
-                System.out.println("고객 정보");
+                System.out.println(resultSet.getString(3) + "고객 정보");
                 System.out.println("고객번호 : " + resultSet.getString(1));
                 System.out.println("고객명 : " + resultSet.getString(2));
                 System.out.println("고객지역 : " + resultSet.getString(3));
