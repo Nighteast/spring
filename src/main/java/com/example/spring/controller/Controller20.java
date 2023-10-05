@@ -115,7 +115,7 @@ public class Controller20 {
                 """;
         Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql);
-        statement.setString(1,country);
+        statement.setString(1, country);
         ResultSet resultSet = statement.executeQuery();
 
         try (connection; statement; resultSet) {
