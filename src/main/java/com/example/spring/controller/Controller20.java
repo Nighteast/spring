@@ -111,7 +111,7 @@ public class Controller20 {
         String sql = """
                 SELECT customerId, customerName, country
                 FROM customers
-                WHERE Country = ?
+                WHERE country = ?
                 """;
         Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql);
