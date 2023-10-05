@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class MyDto15 {
-    private Integer id;
+    private Integer cid;
     private String name;
     private String address;
     private String country;
