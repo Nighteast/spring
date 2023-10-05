@@ -1,6 +1,7 @@
 package com.example.spring.controller;
 
 import com.example.spring.domain.MyDto15;
+import com.example.spring.domain.MyDto16;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -127,5 +128,67 @@ public class Controller20 {
                 System.out.println("고객지역 : " + resultSet.getString(3));
             }
         }
+    }
+
+    @GetMapping("sub6")
+    public void method6(String c1, String c2) throws SQLException {
+        String sql = """
+                SELECT customerName, country
+                FROM customers
+                WHERE country = ? OR country = ?
+                """;
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+
+        statement.setString(1, c1);
+        statement.setString(2, c2);
+
+        ResultSet resultSet = statement.executeQuery();
+        try (connection; statement; resultSet) {
+            System.out.println();
+            System.out.println("고객 목록");
+            while (resultSet.next()) {
+                String country = resultSet.getString(1);
+                String name = resultSet.getString(2);
+                System.out.println(country + " : " + name);
+            }
+        }
+
+    }
+
+    @GetMapping("sub7")
+    public void method7() {
+
+    }
+
+    @GetMapping("sub8")
+    public String method8(Double min, Double max, Model model) throws SQLException {
+        String sql = """
+                SELECT ProductID, ProductName, Unit, Price
+                FROM products
+                WHERE Price >= ? AND Price <= ?
+                """;
+
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setDouble(1, min);
+        statement.setDouble(2, max);
+        ResultSet resultSet = statement.executeQuery();
+
+        List<MyDto16> list = new ArrayList<>();
+        try (connection; statement; resultSet) {
+            while (resultSet.next()) {
+                MyDto16 dto = new MyDto16();
+                dto.setPid(resultSet.getInt(1));
+                dto.setProductName(resultSet.getString(2));
+                dto.setUnit(resultSet.getString(3));
+                dto.setPrice(resultSet.getDouble(4));
+
+                list.add(dto);
+            }
+        }
+        model.addAttribute("productList", list);
+
+        return "/main19/sub5";
     }
 }
