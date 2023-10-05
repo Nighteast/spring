@@ -57,4 +57,75 @@ public class Controller20 {
         //view로 forward
         return "/main19/sub6";
     }
+
+    @GetMapping("sub3")
+    public void method3(String id) throws SQLException {
+        String sql = """
+                SELECT customerId, customerName, country
+                FROM customers
+                WHERE customerId = ?
+                """;
+
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql); //PreparedStatement 만들때는 ?들어간 sql넣어서 만들기
+        statement.setString(1, id); // 1번째 물음표에 "x"값을 채운다.
+        ResultSet resultSet = statement.executeQuery();
+
+        try (connection; statement; resultSet) {
+            while (resultSet.next()) {
+                System.out.println("고객 정보");
+                System.out.println("id = " + resultSet.getString(1));
+                System.out.println("name = " + resultSet.getString(2));
+                System.out.println("country = " + resultSet.getString(3) + "\n");
+            }
+        }
+    }
+
+    // /main20/sub4?pid=5
+    @GetMapping("sub4")
+    public void method4(Integer pid) throws SQLException {
+        String sql = """
+                SELECT productId, productName
+                FROM products
+                WHERE productId = ?
+                """;
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, pid);
+        ResultSet resultSet = statement.executeQuery();
+
+        try (connection; statement; resultSet) {
+            while (resultSet.next()) {
+                System.out.println();
+                System.out.println("상품 정보");
+                System.out.println("상품번호 = " + resultSet.getInt(1));
+                System.out.println("상품명 = " + resultSet.getString(2));
+            }
+        }
+    }
+
+    // /main20/sub5?country=spain
+    // 콘솔에 spain에 사는 고객 이름 출력
+    @GetMapping("sub5")
+    public void metho5(String country) throws SQLException {
+        String sql = """
+                SELECT customerId, customerName, country
+                FROM customers
+                WHERE Country = ?
+                """;
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setString(1,country);
+        ResultSet resultSet = statement.executeQuery();
+
+        try (connection; statement; resultSet) {
+            while (resultSet.next()) {
+                System.out.println();
+                System.out.println("고객 정보");
+                System.out.println("고객번호 : " + resultSet.getString(1));
+                System.out.println("고객명 : " + resultSet.getString(2));
+                System.out.println("고객지역 : " + resultSet.getString(3));
+            }
+        }
+    }
 }
