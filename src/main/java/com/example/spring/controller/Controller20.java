@@ -2,11 +2,13 @@ package com.example.spring.controller;
 
 import com.example.spring.domain.MyDto15;
 import com.example.spring.domain.MyDto16;
+import com.example.spring.domain.MyDto17;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -190,5 +192,120 @@ public class Controller20 {
         model.addAttribute("productList", list);
 
         return "/main19/sub5";
+    }
+
+    // /main20/sub9?country=spain&country=mexico&country=uk
+    @GetMapping("sub9")
+    public void method9(@RequestParam("country") List<String> countryList) throws SQLException {
+        String questionMarks = "";
+        for (int i = 0; i < countryList.size(); i++) {
+            questionMarks += "?";
+
+            if (i < countryList.size() - 1) {
+                questionMarks += ", ";
+            }
+        }
+        // 특정 국가에 속한 고객들 조회
+        String sql = """
+                SELECT *
+                FROM customers
+                WHERE country IN ("""
+
+                +
+
+                questionMarks
+
+                +
+
+                """
+                        )
+                        """;
+
+//        System.out.println("sql = " + sql);
+
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+
+        for (int i = 0; i < countryList.size(); i++) {
+            statement.setString(i + 1, countryList.get(i));
+        }
+        ResultSet resultSet = statement.executeQuery();
+
+        try (connection; statement; resultSet) {
+            System.out.println("고객 목록");
+            while (resultSet.next()) {
+                String name = resultSet.getString(2);
+                String country = resultSet.getString(7);
+
+                System.out.println(name + " : " + country);
+            }
+        }
+    }
+
+    @GetMapping("sub10")
+    public void method10(Model model) throws SQLException {
+        // 공급자의 국가 목록 조회
+        String sql = """
+                SELECT DISTINCT country
+                FROM suppliers
+                """;
+
+        Connection connection = dataSource.getConnection();
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        List<String> list = new ArrayList<>();
+        try (connection; statement; resultSet) {
+            while (resultSet.next()) {
+                list.add(resultSet.getString(1));
+            }
+        }
+        model.addAttribute("countryList", list);
+    }
+
+    @GetMapping("sub11")
+    public void method11(@RequestParam("countryList") List<String> countryList, Model model) throws Exception {
+        String questionMarks = "";
+        for (int i = 0; i < countryList.size(); i++) {
+            questionMarks += "?";
+            if (i < countryList.size() - 1) {
+                questionMarks += ", ";
+            }
+        }
+        String sql = """
+                SELECT SupplierID, SupplierName, City, Country
+                FROM suppliers
+                WHERE country IN (                
+                """
+                +
+                questionMarks
+                +
+                ")";
+
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+
+        for (int i = 0; i < countryList.size(); i++) {
+            statement.setString(i + 1, countryList.get(i));
+        }
+
+        ResultSet resultSet = statement.executeQuery();
+
+        List<MyDto17> list = new ArrayList<>();
+
+        try (connection; statement; resultSet) {
+            while (resultSet.next()) {
+                MyDto17 dto = new MyDto17();
+
+                dto.setId(resultSet.getString(1));
+                dto.setName(resultSet.getString(2));
+                dto.setCity(resultSet.getString(3));
+                dto.setCountry(resultSet.getString(4));
+
+                list.add(dto);
+            }
+        }
+
+        model.addAttribute("supplierList", list);
     }
 }
