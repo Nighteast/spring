@@ -277,10 +277,7 @@ public class Controller20 {
                 FROM suppliers
                 WHERE country IN (                
                 """
-                +
-                questionMarks
-                +
-                ")";
+                + questionMarks + ")";
 
         Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql);
