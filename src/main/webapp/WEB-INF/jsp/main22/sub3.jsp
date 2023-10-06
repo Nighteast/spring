@@ -15,13 +15,16 @@
             border-collapse: collapse;
             width: 30%;
         }
+
         th, td {
             border: 1px solid black;
             text-align: center;
         }
+
         th {
             background-color: orange;
         }
+
         .active {
             background-color: darkblue;
             color: #eeeeee;
@@ -44,7 +47,11 @@
 </table>
 
 <div>
-    <c:forEach begin="1" end="${lastPageNumber}" var="pageNumber">
+    <c:if test="${prevPageNumber > 0}">
+        <a href="/main22/sub3?p=${prevPageNumber}">이전</a>
+    </c:if>
+
+    <c:forEach begin="${leftPageNumber}" end="${rightPageNumber}" var="pageNumber">
         <a
                 <c:if test="${pageNumber == currentPage}">
                     class="active"
@@ -52,6 +59,11 @@
                 href="/main22/sub3?p=${pageNumber}">${pageNumber}</a>
         |
     </c:forEach>
+
+    <c:if test="${nextPageNumber <= lastPageNumber}">
+        <a href="/main22/sub3?p=${nextPageNumber}">다음</a>
+    </c:if>
+
 </div>
 
 </body>
