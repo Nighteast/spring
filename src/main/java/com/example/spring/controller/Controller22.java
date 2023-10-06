@@ -96,11 +96,60 @@ public class Controller22 {
                     int countAll = resultSet1.getInt(1);
                     // 마지막 페이지 번호
                     int lastPageNumber = ((countAll - 1) / 7) + 1;
-                    model.addAttribute("lastPageNumber", 5);
+                    model.addAttribute("lastPageNumber", lastPageNumber);
                 }
             }
 
             model.addAttribute("supplierList", list);
         }
+    }
+
+    // /main22/sub3?p=2
+    // 2페이지 고객목록을 jsp에 테이블 형식(id, name)으로 출력
+    // page 번호로 링크만들기
+    // 1페이지 5개씩 출력
+    @GetMapping("sub3")
+    public void method3(@RequestParam(value = "p", defaultValue = "1") Integer page, Model model) throws SQLException {
+        String sql = """
+                SELECT CustomerID id, CustomerName name
+                FROM customers
+                ORDER BY id
+                LIMIT ?, ?
+                """;
+
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, (page - 1) * 5);
+        statement.setInt(2, 5);
+        ResultSet resultSet = statement.executeQuery();
+
+        List<Map<String, Object>> list = new ArrayList<>();
+
+        try (connection; statement; resultSet) {
+            while (resultSet.next()) {
+                String id = resultSet.getString("id");
+                String name = resultSet.getString("name");
+
+                list.add(Map.of("id", id, "name", name));
+            }
+        }
+        model.addAttribute("customersList", list);
+
+        String sql1 = """
+                SELECT COUNT(*)
+                FROM customers            
+                """;
+        Connection connection1 = dataSource.getConnection();
+        Statement statement1 = connection1.createStatement();
+        ResultSet resultSet1 = statement1.executeQuery(sql1);
+
+        try (connection1; statement1; resultSet1) {
+            if (resultSet1.next()) {
+                int countAll = resultSet1.getInt(1);
+                int lastPageNumber = ((countAll-1) / 5) + 1;
+                model.addAttribute("lastPageNumber", lastPageNumber);
+            }
+        }
+        model.addAttribute("currentPage", page);
     }
 }
