@@ -28,4 +28,14 @@ SELECT supplierName,
        Phone AS `phone number`
 FROM suppliers;
 
+SELECT * FROM products;
+SELECT * FROM categories;
+
+SELECT p.ProductName,
+       c.CategoryName
+FROM products AS p
+         JOIN categories c
+              ON p.CategoryID = c.CategoryID;
+
+
 
