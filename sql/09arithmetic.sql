@@ -26,3 +26,10 @@ SELECT EmployeeID,
        CONCAT(FirstName, ' ', LastName),
        ADDDATE(BirthDate, INTERVAL 1 YEAR )
 FROM employees;
+
+-- 예) 주문수량(quantity) * 2 결과 조회(orderDetails 테이블)
+SELECT * FROM orderdetails;
+SELECT *, Quantity * 2 FROM orderdetails;
+-- 예) "city, country" 고객 테이블 조회
+SELECT CustomerID, CONCAT(City, ', ', Country)
+FROM customers;
