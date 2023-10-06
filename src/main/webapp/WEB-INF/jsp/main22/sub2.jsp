@@ -16,6 +16,7 @@
         }
         th, td {
             border: 1px solid black;
+            text-align: center;
         }
         th {
             background-color: aqua;
@@ -36,5 +37,12 @@
         </tr>
     </c:forEach>
 </table>
+
+<div>
+    <c:forEach begin="1" end="${lastPageNumber}" var="pageNumber">
+        <a href="/main22/sub2?page=${pageNumber}">${pageNumber}</a> |
+    </c:forEach>
+</div>
+
 </body>
 </html>
