@@ -13,7 +13,7 @@
 </head>
 <body>
 <h3>새 직원 등록</h3>
-<form action="/main24/sub5" method="post">
+<form action="/main24/sub4" method="post">
     <%--div*6>input[name]--%>
     <div>
         <input type="text" name="lastName" value="두식">

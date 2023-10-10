@@ -94,7 +94,7 @@ public class Controller24 {
 
     }
 
-    @PostMapping("sub5")
+    @PostMapping("sub4")
     public void method5(MyDto18Employee employees) throws SQLException {
         String sql = """
                 INSERT INTO employees (LastName, FirstName, BirthDate, Photo, Notes) 
