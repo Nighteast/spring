@@ -147,7 +147,9 @@ public class Controller23 {
                 String fname = resultSet.getString("FirstName");
                 String note = resultSet.getString("Notes");
 
-                list.add(Map.of("lname", lname, "fname", fname, "note", note));
+                list.add(Map.of("lname", lname,
+                        "fname", fname,
+                        "note", note));
             }
         }
         model.addAttribute("searchType", searchType);

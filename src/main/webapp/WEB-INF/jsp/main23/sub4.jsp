@@ -17,6 +17,9 @@
         table, th, td {
             border: 1px solid black;
         }
+        th {
+            background-color: skyblue;
+        }
     </style>
 </head>
 <body>
@@ -26,9 +29,9 @@
     <div>
         검색조건
         <select name="t" id="">
-            <option value="lname">Last Name</option>
-            <option value="fname">First Name</option>
-            <option value="note">Notes</option>
+            <option value="lname" ${searchType == "lname" ? "selected" : ""}>Last Name</option>
+            <option value="fname" ${searchType == "fname" ? "selected" : ""}>First Name</option>
+            <option value="note" ${searchType == "note" ? "selected" : ""}>Notes</option>
         </select>
     </div>
     <div>
