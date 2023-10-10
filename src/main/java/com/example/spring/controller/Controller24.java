@@ -1,6 +1,7 @@
 package com.example.spring.controller;
 
 import com.example.spring.domain.MyDto17Supplier;
+import com.example.spring.domain.MyDto18Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -53,7 +54,7 @@ public class Controller24 {
     // /main24/sub2 로 요청시
     // suppliers 테이블에 하나의 레코드 추가하는 메서드 요청
     @PostMapping("sub2")
-    public void method2(MyDto17Supplier supplier, Model model) throws SQLException {
+    public void method2(MyDto17Supplier supplier) throws SQLException {
         String sql = """
                 INSERT INTO suppliers (SupplierName, ContactName, Address, City, PostalCode, Country, Phone) 
                 VALUE (?,?,?,?,?,?,?)
@@ -62,8 +63,7 @@ public class Controller24 {
         Connection connection = dataSource.getConnection();
         PreparedStatement statement = connection.prepareStatement(sql);
 
-        try (connection; statement) {
-            // /main24/sub2?1=루미네&2=여행자&3=티바트&4=폰타인&5=444&6=몬드&7=01044444
+        try (connection; statement;) {
             statement.setString(1, supplier.getSupplierName());
             statement.setString(2, supplier.getContactName());
             statement.setString(3, supplier.getAddress());
@@ -72,20 +72,54 @@ public class Controller24 {
             statement.setString(6, supplier.getCountry());
             statement.setString(7, supplier.getPhone());
 
-            List<Map<String, Object>> list = new ArrayList<>();
-
             int count = statement.executeUpdate();
+
             if (count == 1) {
                 System.out.println("잘 입력됨");
             } else {
-                System.out.println("먼가 잘 못댐");
+                System.out.println("뭔가 잘 못됨@@");
             }
 
         }
 
     }
+
     @GetMapping("sub3")
     public void method3() {
 
     }
+
+    @GetMapping("sub4")
+    public void method4() {
+
+    }
+
+    @PostMapping("sub5")
+    public void method5(MyDto18Employee employees) throws SQLException {
+        String sql = """
+                INSERT INTO employees (LastName, FirstName, BirthDate, Photo, Notes) 
+                VALUE (?, ?, ?, ?, ?) 
+                """;
+
+        Connection connection = dataSource.getConnection();
+        PreparedStatement statement = connection.prepareStatement(sql);
+
+        try (connection; statement) {
+            statement.setString(1, employees.getLastName());
+            statement.setString(2, employees.getFirstName());
+            statement.setString(3, employees.getBirthDate());
+            statement.setString(4, employees.getPhoto());
+            statement.setString(5, employees.getNotes());
+
+            int count = statement.executeUpdate();
+            if (count == 1) {
+                System.out.println("등록 완료");
+            } else {
+                System.out.println("에러발생@@@@@");
+            }
+        }
+    }
+
+
+
 }
