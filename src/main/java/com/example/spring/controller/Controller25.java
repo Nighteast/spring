@@ -202,18 +202,18 @@ public class Controller25 {
 
                     model.addAttribute("employee",
                             Map.of("lastName", lastName,
-                            "firstName", firstName,
-                            "birthDate", birthDate,
-                            "photo", photo,
-                            "notes", notes,
-                            "employeeId", employeeId));
+                                    "firstName", firstName,
+                                    "birthDate", birthDate,
+                                    "photo", photo,
+                                    "notes", notes,
+                                    "employeeId", employeeId));
                 }
             }
         }
     }
 
     @PostMapping("sub7")
-    public void method8(MyDto19Employee employee) throws SQLException {
+    public String method8(MyDto19Employee employee, RedirectAttributes rttr) throws SQLException {
         String sql = """
                 UPDATE employees
                 SET 
@@ -240,10 +240,41 @@ public class Controller25 {
             int rows = statement.executeUpdate();
 
             if (rows == 1) {
+                rttr.addFlashAttribute("message", "직원 정보가 변경되었습니다.");
                 System.out.println("수정완료");
             } else {
+                rttr.addFlashAttribute("message", "직원 정보가 변경되지 않았습니다.");
                 System.out.println("에러발생@@@");
             }
         }
+        rttr.addAttribute("id", employee.getId());
+
+        return "redirect:/main25/sub7";
+    }
+
+    @GetMapping("sub9")
+    public String method9(RedirectAttributes rttr) {
+        // Controller 의 request handler 메서드의 리턴이
+        // void(또는 nill 리턴)이면 view의 이름으로 해석
+
+        // String 이면 view의 이름으로 해석
+        // "redirect:" 접두어가 붙으면
+        // 응답코드가 302이고 location의 응답헤더의 값이 접두어 이후의 값으로 셋팅
+
+        // 쿼리스트링에 request parameter로 붙음
+        rttr.addAttribute("abc", "def");
+        rttr.addAttribute("address", "seoul");
+
+        // 모델에 붙임 (session을 잠깐 거침)
+        rttr.addFlashAttribute("email", "abc@gmail.com");
+
+        return "redirect:/main25/sub10";
+    }
+
+    @GetMapping("sub10")
+    public void method10(Model model) {
+        Object email = model.getAttribute("email");
+        System.out.println("email = " + email);
+        System.out.println("Controller25.method10");
     }
 }
