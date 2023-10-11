@@ -35,4 +35,6 @@ UPDATE products
 SET Price = Price * 2
 WHERE CategoryID = 1;
 
+SELECT * FROM shippers;
+
 
