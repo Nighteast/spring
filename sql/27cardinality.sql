@@ -33,3 +33,8 @@ CREATE TABLE my_table41_person_skill
     skill_id  INT REFERENCES my_table40_skill (id),
     PRIMARY KEY (person_id, skill_id)
 );
+
+
+
+
+
