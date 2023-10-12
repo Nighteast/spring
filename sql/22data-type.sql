@@ -17,3 +17,4 @@ INSERT INTO my_table12 (int_col, dec_col, str_col, date_col, date_time_col)
 VALUE ();
 
 SELECT * FROM my_table12;
+
