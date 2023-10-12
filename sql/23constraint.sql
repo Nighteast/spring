@@ -64,23 +64,27 @@ INSERT INTO my_table16 (col1, col2, col3, col4)
 INSERT INTO my_table16 (col1, col2, col3, col4)
     VALUE (333, NULL, NULL, NULL);
 
-SELECT * FROM my_table16;
+SELECT *
+FROM my_table16;
 
-CREATE TABLE my_table18 (
+CREATE TABLE my_table18
+(
     col1 INT,
-    col2 INT DEFAULT 300,
+    col2 INT          DEFAULT 300,
     col3 INT NOT NULL DEFAULT 500
 );
 INSERT INTO my_table18 (col1, col2, col3)
-    VALUE (3, NULL, NULL);  -- not ok
+    VALUE (3, NULL, NULL); -- not ok
 INSERT INTO my_table18 (col1, col3)
-    VALUE (3, 222);  -- ok
+    VALUE (3, 222); -- ok
 INSERT INTO my_table18 (col1)
     VALUE (4);
 
-SELECT * FROM my_table18;
+SELECT *
+FROM my_table18;
 
-CREATE TABLE my_table19 (
+CREATE TABLE my_table19
+(
     col1 INT NOT NULL UNIQUE DEFAULT 100
 );
 INSERT INTO my_table19 (col1) VALUE (1);
@@ -88,25 +92,30 @@ INSERT INTO my_table19 (col1) VALUE (0);
 INSERT INTO my_table19 (col1) VALUE (NULL);
 INSERT INTO my_table19 (col1) VALUE (1);
 
-SELECT * FROM my_table19;
+SELECT *
+FROM my_table19;
 
 -- 테이블의 컬럼과 타입, 제약사항 등을 확인
 -- DESCRIBE, DESC
 DESCRIBE my_table18;
 DESC my_table18;
 
-DESC my_table15;
+DESC my_table15
+;
 
 -- TABLE 생성 쿼리 확인
 SHOW CREATE TABLE my_table15;
-CREATE TABLE `my_table15` (
-                              `col1` int(11) DEFAULT NULL,
-                              `col2` int(11) NOT NULL,
-                              `col3` int(11) DEFAULT NULL,
-                              `col4` int(11) NOT NULL,
-                              UNIQUE KEY `col4` (`col4`),
-                              UNIQUE KEY `col3` (`col3`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `my_table15`
+(
+    `col1` int(11) DEFAULT NULL,
+    `col2` int(11) NOT NULL,
+    `col3` int(11) DEFAULT NULL,
+    `col4` int(11) NOT NULL,
+    UNIQUE KEY `col4` (`col4`),
+    UNIQUE KEY `col3` (`col3`)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_general_ci;
 
 -- CHECK : 값의 유효범위 체크
 CREATE TABLE my_table20
@@ -117,16 +126,20 @@ CREATE TABLE my_table20
 );
 DESC my_table20;
 SHOW CREATE TABLE my_table20;
-CREATE TABLE `my_table20` (
-                              `col1` int(11) DEFAULT NULL,
-                              `col2` int(11) DEFAULT NULL CHECK (`col2` > 100),
-                              `col3` int(11) DEFAULT NULL CHECK (`col3` > 1000 and `col3` < 2000)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+CREATE TABLE `my_table20`
+(
+    `col1` int(11) DEFAULT NULL,
+    `col2` int(11) DEFAULT NULL CHECK (`col2` > 100),
+    `col3` int(11) DEFAULT NULL CHECK (`col3` > 1000 and `col3` < 2000)
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4
+  COLLATE = utf8mb4_general_ci;
 
 INSERT INTO my_table20 (col1, col2, col3)
-    VALUE (10000, 50, -10);   -- not ok
+    VALUE (10000, 50, -10); -- not ok
 INSERT INTO my_table20 (col1, col2, col3)
     VALUE (10000, 150, 1500); -- ok
 
-SELECT * FROM my_table20;
+SELECT *
+FROM my_table20;
 
