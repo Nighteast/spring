@@ -50,7 +50,7 @@ SELECT CustomerID, CustomerName
 FROM customers
 WHERE Country = 'mexico';
 
--- 행 1개, 열 1개 예제
+--                          행 1개, 열 1개 예제
 -- 'Tofu' 상품을 공급하는 공급자명
 SELECT SupplierID
 FROM products
@@ -67,7 +67,7 @@ FROM suppliers s
          JOIN products p On s.SupplierID = p.SupplierID
 WHERE ProductName = 'Tofu';
 
--- 행 n개, 열 1개 예제
+--                          행 n개, 열 1개 예제
 -- 'mexico'고객들이 주문한 일자들 조회
 SELECT CustomerID
 FROM customers
@@ -116,6 +116,56 @@ FROM orders;
 SELECT *
 FROM customers
 WHERE CustomerID NOT IN (SELECT CustomerID FROM orders);
+
+--                          행 n개, 열 n개
+SELECT SupplierName, Address, Country
+FROM suppliers;
+
+
+-- 다양한 서브쿼리 예제
+INSERT INTO customers (CustomerName, Address, Country)
+        (SELECT SupplierName, Address, Country FROM suppliers);
+
+INSERT INTO customers (CustomerName, Address, Country)
+        (SELECT ContactName, City, Phone FROM suppliers);
+
+INSERT INTO customers (CustomerName, Address, Country)
+        (SELECT ContactName, City, Phone, Country FROM suppliers);
+
+SELECT *
+FROM customers
+WHERE (City, Country)
+          IN (SELECT City, Country FROM suppliers);
+
+CREATE TABLE table_c
+SELECT CustomerName, City, Country
+FROM customers; -- 필드명, 타입 가져옴
+
+SELECT *
+FROM table_c;
+DESC table_c;
+
+-- 예) 1번 카테고리에 있는 상품들로 새 테이블을 만드는데
+--      새로운 테이블(table_d)은 productName, categoryName, price 컬럼이 있도록
+SELECT ProductName, price
+FROM products;
+SELECT CategoryName
+FROM categories;
+
+CREATE TABLE table_d
+SELECT ProductName, CategoryName, Price
+FROM products
+         JOIN categories
+              ON products.CategoryID = categories.CategoryID
+WHERE products.CategoryID = 1;
+
+SELECT *
+FROM table_d;
+
+
+
+
+
 
 
 
