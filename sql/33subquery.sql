@@ -95,7 +95,7 @@ WHERE ProductID IN (SELECT ProductID
                     WHERE CategoryID = 1);
 
 -- 예) 1번 카테고리에 있는 상품이 주문된 주문된 날짜
-SELECT OrderDate
+SELECT OrderID, OrderDate
 FROM orders
 WHERE OrderID IN (SELECT OrderID
                   FROM orderdetails
@@ -103,10 +103,19 @@ WHERE OrderID IN (SELECT OrderID
                                       FROM products
                                       WHERE CategoryID = 1));
 
-SELECT OrderDate
+SELECT DISTINCT o.OrderID, o.OrderDate
 FROM orders o
          JOIN orderdetails od ON o.OrderID = od.OrderID
          JOIN products p ON od.ProductID = p.ProductID
 WHERE p.CategoryID = 1;
+
+-- 예) 주문한 적 없는 고객들
+SELECT CustomerID
+FROM orders;
+
+SELECT *
+FROM customers
+WHERE CustomerID NOT IN (SELECT CustomerID FROM orders);
+
 
 

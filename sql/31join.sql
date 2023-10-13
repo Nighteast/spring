@@ -28,6 +28,14 @@ FROM employees e
                    ON e.EmployeeID = o.EmployeeID
 WHERE o.EmployeeID IS NULL;
 
+-- 주문을 처리한 적 없는 직원을 찾기(RIGHT)
+SELECT e.LastName, e.FirstName
+FROM employees e
+         RIGHT JOIN orders o
+                   ON e.EmployeeID = o.EmployeeID
+WHERE o.EmployeeID IS NULL;
+
+
 SELECT DISTINCT EmployeeID
 FROM orders
 ORDER BY 1;
