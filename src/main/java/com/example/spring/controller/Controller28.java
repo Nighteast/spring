@@ -17,6 +17,7 @@ public class Controller28 {
     public void method1(Integer id) throws Exception {
         String name = dao.select(id);
         System.out.println("name = " + name);
+        System.out.println("name = " + name);
     }
 
 }
