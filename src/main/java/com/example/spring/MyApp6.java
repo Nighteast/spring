@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @SpringBootApplication
 public class MyApp6 {
     public static void main(String[] args) {
-        // Inversion Of Control (IOC)
+        // Inversion Of Control (IOC, 제어의 역전)
         // IOC Container
 
         ApplicationContext context = SpringApplication.run(MyApp6.class, args);
