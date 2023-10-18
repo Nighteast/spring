@@ -1,12 +1,11 @@
 package com.example.spring.controller;
 
 import com.example.spring.dao.MyDao4;
-import com.example.spring.domain.MyDto25;
-import com.example.spring.domain.MyDto26;
-import com.example.spring.domain.MyDto4;
+import com.example.spring.domain.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
@@ -57,12 +56,56 @@ public class Controller30 {
         list.forEach(System.out::println);
     }
 
+    // /main30/sub6?from=1996-09-01&to=1996-09-30
+    @GetMapping("sub6")
+    public void method6(MyDto27 dto1, MyDto28 dto2) {
+        Integer num = dao.select6(dto1, dto2);
+        System.out.println("num = " + num);
+    }
 
+    //  /main30/sub7?page=2&rows=10&keyword=a
+    @GetMapping("sub7")
+    public void method7(MyDto29 dto1, MyDto30 dto2) {
+//        dto1.setFrom((dto1.getPage() - 1) * dto1.getRows());
+//        dto2.setKeyword("%" + dto2.getKeyword() + "%");
+
+        List<String> names = dao.select7(dto1, dto2);
+
+        System.out.println("dto1.getPage() = " + dto1.getPage());
+
+        names.forEach(System.out::println);
+    }
+
+    // /main30/sub8?name=son&country=korea
+    @GetMapping("sub8")
+    public void method8(MyDto31 dto) {
+
+        int row = dao.insert1(dto);
+
+        System.out.println(row + "행이 입력되었습니다.");
+    }
+
+    // /main30/sub9
+    @GetMapping("sub9")
+    public void method9() {
+
+    }
+    @PostMapping("sub10")
+    public void method10(MyDto32 emp) {
+        int row = dao.insert2(emp);
+        System.out.println(row + "행이 입력됨");
+    }
 
 
     class Solution {
         public int solution(int n) {
             int answer = 0;
+
+            for (int i = 1; i <= n; i++) {
+                if (n % i == 0) {
+                    answer++;
+                }
+            }
             return answer;
         }
     }

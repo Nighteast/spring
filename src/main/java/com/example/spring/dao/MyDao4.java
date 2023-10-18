@@ -1,7 +1,7 @@
 package com.example.spring.dao;
 
-import com.example.spring.domain.MyDto25;
-import com.example.spring.domain.MyDto26;
+import com.example.spring.domain.*;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -16,7 +16,7 @@ public interface MyDao4 {
             FROM customers
             WHERE CustomerID = #{asdasd}
             """)
-    // 파라미터가 하나면 이름이 일치하지 않아도 됨
+        // 파라미터가 하나면 이름이 일치하지 않아도 됨
     String select1(int customerId);
 
     @Select("""
@@ -35,6 +35,7 @@ public interface MyDao4 {
             ORDER BY 1
             """)
     List<String> select3(LocalDate from, LocalDate to);
+
     @Select("""
             SELECT ProductName
             FROM products
@@ -50,6 +51,31 @@ public interface MyDao4 {
 //    WHERE Country = #{country1} OR Country = #{country2}
     List<String> select5(MyDto26 dto);
 
+    @Select("""
+            SELECT COUNT(OrderID)
+            FROM orders
+            WHERE OrderDate BETWEEN #{dto1.from} AND #{dto2.to}
+            """)
+    Integer select6(MyDto27 dto1, MyDto28 dto2);
+
+    @Select("""
+            SELECT CustomerName
+            FROM customers
+            WHERE CustomerName LIKE #{dto2.keyword}
+            LIMIT #{dto1.from}, #{dto1.rows}
+            """)
+    List<String> select7(MyDto29 dto1, MyDto30 dto2);
 
 
+    @Insert("""
+            INSERT INTO customers (CustomerName, Country)
+            VALUE (#{name}, #{country})
+            """)
+    int insert1(MyDto31 dto);
+
+    @Insert("""
+            INSERT INTO employees (LastName, FirstName)
+            VALUE (#{lastName}, #{firstName})
+            """)
+    int insert2(MyDto32 emp);
 }
