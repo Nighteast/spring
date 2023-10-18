@@ -3,6 +3,7 @@ package com.example.spring.controller;
 import com.example.spring.dao.MyDao3;
 import com.example.spring.domain.MyDto19;
 import com.example.spring.domain.MyDto20;
+import com.example.spring.domain.MyDto21;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -92,5 +93,31 @@ public class Controller29 {
     public void method11() {
         MyDto20 dto = dao3.select11();
         System.out.println("dto = " + dto);
+    }
+
+    @GetMapping("sub12")
+    public void method12() {
+        // 2번 고객의 id, name, country
+        // MyDto21의 property (id, name, country)
+        MyDto21 dto = dao3.select12();
+        System.out.println("dto = " + dto);
+    }
+
+    @GetMapping("sub13")
+    public void method13() {
+        List<Map<String, Object>> rows = dao3.select13();
+        for (Map<String, Object> row : rows) {
+            System.out.println("row = " + row);
+        }
+    }
+
+    @GetMapping("sub14")
+    public void method14() {
+        // 1996년 7월 4일에 주문된 상품명, 상품의 수량, 상품의 가격
+        // orders, orderDetails, products
+        List<Map<String, Object>> maps = dao3.select14();
+        for (Map<String, Object> map : maps) {
+            System.out.println("map = " + map);
+        }
     }
 }

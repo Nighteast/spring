@@ -2,6 +2,7 @@ package com.example.spring.dao;
 
 import com.example.spring.domain.MyDto19;
 import com.example.spring.domain.MyDto20;
+import com.example.spring.domain.MyDto21;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -79,9 +80,37 @@ public interface MyDao3 {
     MyDto19 select10();
 
     @Select("""
-SELECT ProductName, Price, CategoryName
-FROM products p JOIN categories c ON p.CategoryID = c.CategoryID
-WHERE ProductID = 1
-""")
+            SELECT ProductName name, Price, CategoryName category
+            FROM products p JOIN categories c ON p.CategoryID = c.CategoryID
+            WHERE ProductID = 1
+            """)
     MyDto20 select11();
+
+    @Select("""
+SELECT CustomerID id, CustomerName name, Country
+FROM customers
+WHERE CustomerID = 2
+""")
+    MyDto21 select12();
+
+    @Select("""
+            SELECT ProductID id, 
+                   ProductName name, 
+                   Price
+            FROM products
+            WHERE CategoryID = 2
+            ORDER BY Price
+            """)
+    List<Map<String, Object>> select13();
+
+    @Select("""
+            SELECT ProductName, Quantity, Price
+            FROM products p 
+                JOIN orderdetails od
+                    ON p.ProductID = od.ProductID
+                JOIN orders o 
+                    ON od.OrderID = o.OrderID
+            WHERE OrderDate = '1996-07-04'
+            """)
+    List<Map<String, Object>> select14();
 }
