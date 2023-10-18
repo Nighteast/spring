@@ -164,4 +164,6 @@ public class Controller29 {
         MyDto24 dto = dao3.select20();
         System.out.println("dto = " + dto);
     }
+
+
 }
