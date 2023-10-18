@@ -1,9 +1,7 @@
 package com.example.spring.controller;
 
 import com.example.spring.dao.MyDao3;
-import com.example.spring.domain.MyDto19;
-import com.example.spring.domain.MyDto20;
-import com.example.spring.domain.MyDto21;
+import com.example.spring.domain.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -119,5 +117,43 @@ public class Controller29 {
         for (Map<String, Object> map : maps) {
             System.out.println("map = " + map);
         }
+        maps.forEach(System.out::println);
+    }
+
+    @GetMapping("sub15")
+    public void method15() {
+        // 1996년 7월 4일에 주문된 상품명, 상품의 수량, 상품의 가격
+        // orders, orderDetails, products
+        // java bean 으로 만들기
+        List<MyDto22> maps = dao3.select15();
+
+        maps.forEach(System.out::println);
+    }
+
+    // sub16 요청시
+    // 1번 카테고리 상품들이 주문된 날짜, 상품명, 카테고리명, 수량, 가격
+    @GetMapping("sub16")
+    public void method16() {
+        List<MyDto23> dtos = dao3.select16();
+        dtos.forEach(System.out::println);
+        System.out.println("dtos.size() = " + dtos.size());
+    }
+
+    @GetMapping("sub17")
+    public void method17() {
+        String s = dao3.select17();
+        System.out.println("s = " + s);
+    }
+
+    @GetMapping("sub18")
+    public void method18() {
+        Integer s = dao3.select18();
+        System.out.println("s = " + s);
+    }
+
+    @GetMapping("sub19")
+    public void method19() {
+        MyDto24 dto = dao3.select19();
+        System.out.println("dto = " + dto);
     }
 }

@@ -1,8 +1,6 @@
 package com.example.spring.dao;
 
-import com.example.spring.domain.MyDto19;
-import com.example.spring.domain.MyDto20;
-import com.example.spring.domain.MyDto21;
+import com.example.spring.domain.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -87,10 +85,10 @@ public interface MyDao3 {
     MyDto20 select11();
 
     @Select("""
-SELECT CustomerID id, CustomerName name, Country
-FROM customers
-WHERE CustomerID = 2
-""")
+            SELECT CustomerID id, CustomerName name, Country
+            FROM customers
+            WHERE CustomerID = 2
+            """)
     MyDto21 select12();
 
     @Select("""
@@ -104,13 +102,64 @@ WHERE CustomerID = 2
     List<Map<String, Object>> select13();
 
     @Select("""
-            SELECT ProductName, Quantity, Price
+            SELECT ProductName name, Quantity 수량, Price
             FROM products p 
                 JOIN orderdetails od
                     ON p.ProductID = od.ProductID
                 JOIN orders o 
                     ON od.OrderID = o.OrderID
-            WHERE OrderDate = '1996-07-04'
+            WHERE o.OrderDate = '1996-07-04'
+            ORDER BY name
             """)
     List<Map<String, Object>> select14();
+
+    @Select("""
+            SELECT ProductName name, Quantity, Price
+            FROM products p 
+                JOIN orderdetails od
+                    ON p.ProductID = od.ProductID
+                JOIN orders o 
+                    ON od.OrderID = o.OrderID
+            WHERE o.OrderDate = '1996-07-04'
+            ORDER BY name
+            """)
+    List<MyDto22> select15();
+
+    @Select("""
+            SELECT c.CategoryID, OrderDate, ProductName, CategoryName, Quantity, Price
+            FROM products p 
+                JOIN categories c
+                    ON p.CategoryID = c.CategoryID
+                JOIN orderdetails od
+                    ON p.ProductID = od.ProductID
+                JOIN orders o
+                    ON o.OrderID = od.OrderID 
+            WHERE c.CategoryID = 1
+            ORDER BY o.OrderDate, p.ProductName
+            """)
+    List<MyDto23> select16();
+
+    @Select("""
+            SELECT CustomerName
+            FROM customers
+            WHERE CustomerID = 100
+            """)
+    String select17();
+
+    //  참조타입으로 설정해서 Null일 경우 RuntimeException 방지한다.
+    @Select("""
+            SELECT CustomerID
+            FROM customers
+            WHERE CustomerID = 100
+            """)
+    Integer select18();
+
+    @Select("""
+            SELECT CustomerID id,
+                   CustomerName name,
+                   Country
+            FROM customers
+            WHERE CustomerID = 1
+            """)
+    MyDto24 select19();
 }
