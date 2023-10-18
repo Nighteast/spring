@@ -151,9 +151,17 @@ public class Controller29 {
         System.out.println("s = " + s);
     }
 
+    // bean의 프로퍼티 명과 컬럼명을 주의
     @GetMapping("sub19")
     public void method19() {
         MyDto24 dto = dao3.select19();
+        System.out.println("dto = " + dto);
+    }
+
+    // 쿼리는 여러개 조회, 타입은 1개 결과 조회값 기대 시 오류
+    @GetMapping("sub20")
+    public void method20() {
+        MyDto24 dto = dao3.select20();
         System.out.println("dto = " + dto);
     }
 }

@@ -162,4 +162,13 @@ public interface MyDao3 {
             WHERE CustomerID = 1
             """)
     MyDto24 select19();
+
+    @Select("""
+            SELECT CustomerID id,
+                   CustomerName name,
+                   Country
+            FROM customers
+            WHERE CustomerID > 1
+            """)
+    MyDto24 select20();
 }
