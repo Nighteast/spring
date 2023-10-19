@@ -3,10 +3,12 @@ package com.example.spring.controller;
 import com.example.spring.dao.MyDao5;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequiredArgsConstructor
@@ -28,6 +30,40 @@ public class Controller31 {
     @GetMapping("sub2")
     public void method2(Integer num) {
         List<String> strings = dao.select2(num);
+    }
 
+    // /main31/sub3?code=1&k=ro
+    // /main31/sub3?code=2&k=ro
+    @GetMapping("sub3")
+    public void method3(Integer code, String k, Model model) {
+        // code가 1이면
+        /*
+        SELECT customerName, contactName
+        FROM customers
+        WHERE
+            customerName LIKE '%ro%'
+         */
+
+        // code가 2이면
+        /*
+        SELECT customerName, contactName
+        FROM customers
+        WHERE
+            contactName LIKE '%ro%'
+         */
+        List<Map<String, Object>> rows = dao.select3(code, "%" + k + "%");
+
+        model.addAttribute("names", rows);
+    }
+
+    @GetMapping("sub4")
+    public void method4(Integer i) {
+        String s = dao.select4(i);
+    }
+
+    @GetMapping("sub5")
+    public void method5(Model model) {
+        model.addAttribute("cityList", dao.listCustomerCity());
+        model.addAttribute("countryList", dao.listCustomerCountry());
     }
 }
