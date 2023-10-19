@@ -12,11 +12,10 @@
     <title>Title</title>
 </head>
 <body>
-
 <h3>고객조회</h3>
 <form action="/main31/sub5">
     도시/국가
-    <select name="type">
+    <select name="type" id="">
         <option value="1">도시</option>
         <option value="2">국가</option>
     </select>
@@ -35,5 +34,21 @@
     <button>조회</button>
 </form>
 
+<hr>
+
+<table>
+    <tr>
+        <th>이름</th>
+        <th>도시</th>
+        <th>국가</th>
+    </tr>
+    <c:forEach items="${customerList}" var="customer">
+        <tr>
+            <td>${customer.name}</td>
+            <td>${customer.city}</td>
+            <td>${customer.country}</td>
+        </tr>
+    </c:forEach>
+</table>
 </body>
 </html>
