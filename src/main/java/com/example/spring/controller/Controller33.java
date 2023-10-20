@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
@@ -59,23 +60,90 @@ public class Controller33 {
             String fileName = upload.getOriginalFilename();
             System.out.println("fileName = " + fileName);
 
-            String path = "C:\\Temp\\upload_" + fileName;
+            String path = "C:\\Temp\\upload_";
 
-            InputStream is = upload.getInputStream();
-            FileOutputStream fos = new FileOutputStream(path);
+            BufferedInputStream bis = new BufferedInputStream(upload.getInputStream());
+            BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(path + fileName));
 
-            BufferedInputStream bis = new BufferedInputStream(is);
-            BufferedOutputStream bos = new BufferedOutputStream(fos);
-
-            try (bos; bis; fos; is) {
-                byte[] data = new byte[1024];
+            try (bos; bis) {
+                byte[] data = new byte[2048];
                 int len = 0;
 
-                while ((len = bis.read(data)) == -1) {
+                while ((len = bis.read(data)) != -1) {
                     bos.write(data, 0, len);
                 }
                 bos.flush();
             }
         }
     }
+
+    @GetMapping("sub5")
+    public void method5() {
+
+    }
+
+    @PostMapping("sub6")
+    public void method6(MultipartFile[] files) throws IOException {
+//        System.out.println("files.length = " + files.length);
+        System.out.println("업로드 파일 크기들.");
+        for (MultipartFile file : files) {
+//            System.out.println("file.getSize() = " + file.getSize());
+            if (file.getSize() > 0) {
+                String path = "C:\\Temp\\";
+                BufferedInputStream bis = new BufferedInputStream(file.getInputStream());
+                BufferedOutputStream bos = new BufferedOutputStream(
+                        new FileOutputStream(path + file.getOriginalFilename()));
+
+                try (bos; bis) {
+                    int len = 0;
+                    byte[] data = new byte[2048];
+
+                    while ((len = bis.read(data)) != -1) {
+                        bos.write(data, 0, len);
+                    }
+                    bos.flush();
+                }
+
+            }
+        }
+
+    }
+
+    @GetMapping("sub7")
+    public void method7() {
+    }
+
+    @PostMapping("sub8")
+    public void method8(@RequestParam(value = "files", required = false) MultipartFile[] fileList) throws IOException {
+        // 여러 업로드 된 파일을
+        // C:\\Temp\\upload\\ (폴더만들기 코드까지)
+        // 에 저장
+
+        for (MultipartFile file : fileList) {
+            if (file.getSize() > 0) {
+                String path = "C:\\Temp\\upload\\";
+                File dir = new File(path);
+                if (!dir.exists()) {
+                    dir.mkdirs();
+                }
+
+                BufferedInputStream bis = new BufferedInputStream(file.getInputStream());
+                BufferedOutputStream bos = new BufferedOutputStream(
+                        new FileOutputStream(path + file.getOriginalFilename()));
+
+                try (bos; bis) {
+                    int len = 0;
+                    byte[] data = new byte[2048];
+
+                    while ((len = bis.read(data)) != -1) {
+                        bos.write(data, 0, len);
+                    }
+                    bos.flush();
+                }
+            }
+        }
+
+
+    }
+
 }
