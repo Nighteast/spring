@@ -2,9 +2,10 @@ package com.example.spring.dao;
 
 import com.example.spring.domain.MyDto37;
 import com.example.spring.domain.MyDto38;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Options;
+import org.apache.ibatis.annotations.*;
+
+import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface MyDao6 {
@@ -29,4 +30,25 @@ public interface MyDao6 {
             """)
     @Options(useGeneratedKeys = true, keyProperty = "eid")
     int insert3(MyDto38 dto);
+
+    @Update("""
+            UPDATE bank
+            SET money = money - 1000
+            WHERE name = 'son'
+            """)
+    int update1();
+
+    @Update("""
+            UPDATE bank
+            SET money = money + 1000
+            WHERE name = 'kim'
+            """)
+    int update2();
+
+    @Select("""
+            SELECT *
+            FROM bank
+            ORDER BY name
+            """)
+    List<Map<String, Object>> select3();
 }

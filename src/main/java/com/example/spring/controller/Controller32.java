@@ -3,6 +3,7 @@ package com.example.spring.controller;
 import com.example.spring.dao.MyDao6;
 import com.example.spring.domain.MyDto37;
 import com.example.spring.domain.MyDto38;
+import com.example.spring.service.MyService1;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class Controller32 {
 
     private final MyDao6 dao;
+    private final MyService1 service;
 
     @GetMapping("sub1")
     public void method1(MyDto37 dto) {
@@ -46,4 +48,15 @@ public class Controller32 {
 
         return "redirect:/main32/sub3";
     }
+
+    @GetMapping("sub5")
+    public void method5() {
+        try {
+            service.tx1();
+        } finally {
+            System.out.println("dao.select3() = " + dao.select3());
+        }
+    }
+
+
 }
