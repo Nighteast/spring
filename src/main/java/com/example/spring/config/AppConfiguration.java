@@ -11,7 +11,6 @@ import software.amazon.awssdk.services.s3.S3Client;
 
 @Configuration
 public class AppConfiguration {
-
     @Value("${aws.accessKeyId}")
     private String accessKeyId;
     @Value("${aws.secretAccessKey}")
@@ -22,7 +21,7 @@ public class AppConfiguration {
         AwsBasicCredentials credentials = AwsBasicCredentials.create(accessKeyId, secretAccessKey);
         AwsCredentialsProvider provider = StaticCredentialsProvider.create(credentials);
 
-        S3Client.builder()
+        return S3Client.builder()
                 .region(Region.AP_NORTHEAST_2)
                 .credentialsProvider(provider)
                 .build();
