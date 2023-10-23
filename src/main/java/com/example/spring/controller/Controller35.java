@@ -22,4 +22,26 @@ public class Controller35 {
     public void method3(String address) {
         System.out.println("address = " + address);
     }
+
+    @GetMapping("sub4")
+    public void method4(String address,
+                        String name,
+                        Integer age,
+                        String email) {
+        System.out.println("address = " + address);
+        System.out.println("name = " + name);
+        System.out.println("age = " + age);
+        System.out.println("email = " + email);
+    }
+
+    @GetMapping("sub5")
+    public void method5(String city,
+                        Integer id,
+                        Double score,
+                        String country) {
+        System.out.println("city = " + city);
+        System.out.println("id = " + id);
+        System.out.println("score = " + score);
+        System.out.println("country = " + country);
+    }
 }

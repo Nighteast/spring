@@ -30,11 +30,42 @@
             function ajax2() {
                 axios.request({
                     url: "/main35/sub3?address=seoul"
+                });
+            }
+        </script>
+    </div>
+    <div>
+        <button onclick="ajax3()">button3</button>
+        <script>
+            function ajax3() {
+                axios.request({
+                    url: "/main35/sub4",
+                    params: {
+                        address: "seoul",
+                        name: "son",
+                        age: 33,
+                        email: "abc@naver.com"
+                    }
+                });
+            }
+        </script>
+    </div>
+    <div>
+        <button onclick="ajax4()">button4</button>
+        <script>
+            function ajax4() {
+                axios.request({
+                    url: "/main35/sub5",
+                    params: {
+                        city: "london",
+                        id: 1,
+                        score: 99.99,
+                        country: "UK"
+                    }
                 })
             }
         </script>
     </div>
-
 
 </body>
 </html>
