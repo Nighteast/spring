@@ -2,6 +2,7 @@ package com.example.spring.controller;
 
 import com.example.spring.dao.MyDao8;
 import com.example.spring.domain.MyDto33Employee;
+import com.example.spring.domain.MyDto45;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -70,6 +71,21 @@ public class Controller38 {
     @ResponseBody
     public MyDto33Employee method6(Integer id) {
         return dao.selectByEmployeeId(id);
+    }
+
+    /*
+    axios.get("/main38/sub7?id=33")
+    33번 상품의 정보를 json으로 응답
+    id(상품아이디)
+    price(상품가격)
+    category(카테고리명)
+    unit(단위)
+     */
+    // 7번째 메서드와 45번 dto, dao.selectByProductId2
+    @GetMapping("sub7")
+    @ResponseBody
+    public MyDto45 method7(Integer id) {
+        return dao.selectProductById2(id);
     }
 
 }
