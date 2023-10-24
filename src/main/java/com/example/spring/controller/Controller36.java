@@ -3,6 +3,7 @@ package com.example.spring.controller;
 import com.example.spring.dao.MyDao7;
 import com.example.spring.domain.MyDto39;
 import com.example.spring.domain.MyDto40;
+import com.example.spring.domain.MyDto41;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -225,6 +226,25 @@ public class Controller36 {
     @PutMapping("sub16")
     public void method16(MyDto40 dto) {
         int rows = dao.updateProduct(dto);
+        System.out.println(rows + "개 데이터 수정됨");
+    }
+
+    /*
+    axios.put("/main36/sub17", {
+        lastName: "lee",
+        firstName: "kangin",
+        birthDate: "2020-01-01",
+        id: 5
+    }, {
+        headers : {
+            "content-type": "application/x-www-form-urlencoded"
+        }
+
+    });
+     */
+    @PutMapping("sub17")
+    public void method17(MyDto41 dto) {
+        int rows = dao.updateEmployee(dto);
         System.out.println(rows + "개 데이터 수정됨");
     }
 

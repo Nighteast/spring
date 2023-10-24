@@ -1,6 +1,7 @@
 package com.example.spring.dao;
 
 import com.example.spring.domain.MyDto40;
+import com.example.spring.domain.MyDto41;
 import org.apache.ibatis.annotations.*;
 
 import java.time.LocalDate;
@@ -55,4 +56,14 @@ public interface MyDao7 {
             
         """)
     int updateProduct(MyDto40 dto);
+
+    @Update("""
+            UPDATE employees
+            SET LastName  = #{lastName},
+                FirstName = #{firstName},
+                BirthDate = #{birthDate}
+            WHERE
+                EmployeeID = #{id};      
+            """)
+    int updateEmployee(MyDto41 dto);
 }
