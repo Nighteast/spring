@@ -1,8 +1,7 @@
 package com.example.spring.dao;
 
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import com.example.spring.domain.MyDto40;
+import org.apache.ibatis.annotations.*;
 
 import java.time.LocalDate;
 import java.util.Map;
@@ -27,4 +26,33 @@ public interface MyDao7 {
             VALUES (#{lastName}, #{firstName}, #{birthDate})
             """)
     int insertEmployee(String lastName, String firstName, LocalDate birthDate);
+
+    @Insert("""
+            INSERT INTO products (ProductName, Price, CategoryID)
+            VALUES (#{name}, #{price}, #{category})
+            """)
+    int insertProduct(String name, Double price, Integer category);
+
+    @Delete("""
+            DELETE FROM products
+            WHERE ProductID = #{pid}
+            """)
+    int deleteByProductId(Integer pid);
+
+    @Delete("""
+            DELETE FROM customers
+            WHERE CustomerID = #{cid}
+            """)
+    int deleteByCustomerId(Integer cid);
+
+    @Update("""
+        UPDATE products
+        SET price = #{price},
+            categoryId = #{category},
+            productName = #{name}
+        WHERE
+            productId = #{id}
+            
+        """)
+    int updateProduct(MyDto40 dto);
 }
