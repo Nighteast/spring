@@ -114,11 +114,14 @@
         <textarea id="notesTextArea" cols="30" rows="10" placeholder="notes"></textarea>
     </div>
     <div>
-        <button onclick="ajax7AddEmployee()">등록</button>
+        <button onclick="ajax7AddEmployee()" id="button1">등록</button>
     </div>
     <p id="result2"></p>
     <script>
         function ajax7AddEmployee() {
+            const button1 = document.getElementById("button1");
+            button1.setAttribute("disabled", "disabled");
+
             const lastName = document.getElementById("lastNameInput").value;
             const firstName = document.getElementById("firstNameInput").value;
             const birthDate = document.getElementById("birthInput").value;
@@ -142,33 +145,10 @@
                 })
                 .finally(() => {
                     // 항상 실행
+                    button1.removeAttribute("disabled");
                 })
         }
     </script>
 </div>
-<%--    <div>--%>
-<%--        <button onclick="ajax8()">button8</button>--%>
-<%--        <script>function ajax8()</script>--%>
-<%--    </div>--%>
-<%--    <div>--%>
-<%--        <button onclick="ajax9()">button9</button>--%>
-<%--        <script>function ajax9()</script>--%>
-<%--    </div>--%>
-<%--    <div>--%>
-<%--        <button onclick="ajax10()">button10</button>--%>
-<%--        <script>function ajax10()</script>--%>
-<%--    </div>--%>
-<%--    <div>--%>
-<%--        <button onclick="ajax11()">button11</button>--%>
-<%--        <script>function ajax11()</script>--%>
-<%--    </div>--%>
-<%--    <div>--%>
-<%--        <button onclick="ajax12()">button12</button>--%>
-<%--        <script>function ajax12()</script>--%>
-<%--    </div>--%>
-<%--    <div>--%>
-<%--        <button onclick="ajax13()">button13</button>--%>
-<%--        <script>function ajax13()</script>--%>
-<%--    </div>--%>
 </body>
 </html>
