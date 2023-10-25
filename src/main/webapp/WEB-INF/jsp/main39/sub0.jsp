@@ -74,18 +74,78 @@
         }
     </script>
 </div>
-<%--    <div>--%>
-<%--        <button onclick="ajax5()">button5</button>--%>
-<%--        <script>function ajax5()</script>--%>
-<%--    </div>--%>
-<%--    <div>--%>
-<%--        <button onclick="ajax6()">button6</button>--%>
-<%--        <script>function ajax6()</script>--%>
-<%--    </div>--%>
-<%--    <div>--%>
-<%--        <button onclick="ajax7()">button7</button>--%>
-<%--        <script>function ajax7()</script>--%>
-<%--    </div>--%>
+<div>
+    <input type="text" id="input1">
+    <button onclick="ajax5()">button5</button>
+    <script>
+        function ajax5() {
+            const pid = document.getElementById("input1").value;
+            axios.get("/main39/sub4?id=" + pid)
+                .then(response => response.data)
+                .then(data => console.log(data))
+                .catch(error => console.log(error));
+        }
+    </script>
+</div>
+<div>
+    <button onclick="ajax6()">button6</button>
+    <script>
+        function ajax6() {
+            axios.get("/main39/sub5")
+                .then(() => console.log("성공#"))
+                .catch(() => console.log("실패!"))
+                .finally(() => console.log("항상$$$$"))
+        }
+    </script>
+</div>
+<hr>
+<div>
+    <h3>직원 등록</h3>
+    <div>
+        <input type="text" id="firstNameInput" placeholder="first name">
+    </div>
+    <div>
+        <input type="text" id="lastNameInput" placeholder="last name">
+    </div>
+    <div>
+        <input type="date" id="birthInput">
+    </div>
+    <div>
+        <textarea id="notesTextArea" cols="30" rows="10" placeholder="notes"></textarea>
+    </div>
+    <div>
+        <button onclick="ajax7AddEmployee()">등록</button>
+    </div>
+    <p id="result2"></p>
+    <script>
+        function ajax7AddEmployee() {
+            const lastName = document.getElementById("lastNameInput").value;
+            const firstName = document.getElementById("firstNameInput").value;
+            const birthDate = document.getElementById("birthInput").value;
+            const notes = document.getElementById("notesTextArea").value;
+
+            axios.post("/main39/sub6", {
+                lastName, firstName, birthDate, notes
+            })
+                .then(() => {
+                    // 성공했을 때 (2xx 응답)
+                    document.getElementById("result2").textContent = "등록 성공";
+                })
+                .catch((error) => {
+                    // 실패했을 때 (2xx 외 응답)
+                    const code = error.response.status;
+                    if (400 <= code && code < 500) {
+                        document.getElementById("result2").textContent = "잘못된 입력"
+                    } else if (500 <= code) {
+                        document.getElementById("result2").textContent = "서버 오류"
+                    }
+                })
+                .finally(() => {
+                    // 항상 실행
+                })
+        }
+    </script>
+</div>
 <%--    <div>--%>
 <%--        <button onclick="ajax8()">button8</button>--%>
 <%--        <script>function ajax8()</script>--%>
