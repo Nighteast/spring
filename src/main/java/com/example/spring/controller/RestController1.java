@@ -1,6 +1,7 @@
 package com.example.spring.controller;
 
 import com.example.spring.dao.MyDao10;
+import com.example.spring.domain.MyDto34Customers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,5 +33,10 @@ public class RestController1 {
         return dao.selectCustomerById(6);
     }
 
+    @GetMapping("sub3")
+    @ResponseBody
+    public MyDto34Customers method3() {
+        return dao.getCustomer();
+    }
 
 }
