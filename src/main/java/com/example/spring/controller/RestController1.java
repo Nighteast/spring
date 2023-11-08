@@ -39,4 +39,10 @@ public class RestController1 {
         return dao.getCustomer();
     }
 
+    // /api/main1/sub4?id=10
+    @GetMapping("sub4")
+    @ResponseBody
+    public MyDto34Customers method4(Integer id) {
+        return dao.getCustomerById(id);
+    }
 }
